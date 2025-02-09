@@ -96,6 +96,7 @@
             font-size: 2rem;
             margin: 0 0 10px;
             color: #f39c12;
+            text-align: center;
         }
 
         #description-panel p {
@@ -103,6 +104,7 @@
             max-width: 90%;
             text-align: center;
             color: #ecf0f1;
+            margin: 0;
         }
 
         .close-btn {
@@ -142,36 +144,6 @@
         }
 
         .edit-btn:hover {
-            background: #45a049;
-        }
-
-        /* Formulario de edición */
-        .edit-form {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .edit-form input, .edit-form textarea {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-
-        .edit-form button {
-            background: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-        }
-
-        .edit-form button:hover {
             background: #45a049;
         }
 
@@ -223,98 +195,43 @@
     <!-- Galería de fotos -->
     <section class="gallery">
         <!-- Foto 1 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/S3kKoJ5.jpg', 'Estudiantes', '')">
             <img src="https://i.imgur.com/S3kKoJ5.jpg" alt="Arte clásico en el museo">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/S3kKoJ5.jpg', 'Estudiantes', '')">Editar</button>
         </div>
         <!-- Foto 2 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/agFhLkp.jpg', 'Estudiantes', '')">
             <img src="https://i.imgur.com/agFhLkp.jpg" alt="Escultura moderna">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/agFhLkp.jpg', 'Estudiantes', '')">Editar</button>
+        </div>
+        <div class="photo-card" onclick="showDescription('https://imgur.com/pja7JrG.jpg', 'mineral','Exhibición de minerales organizada por composición química. Incluye elementos nativos, silicatos, sulfuros, óxidos e hidróxidos. Las muestras están cuidadosamente dispuestas en vitrinas iluminadas y etiquetadas, permitiendo una mejor comprensión de su variedad y características. Esta colección invita a los visitantes a explorar la riqueza geológica y apreciar la diversidad')">
+            <img src="https://imgur.com/pja7JrG.jpg" alt="Escultura moderna">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://imgur.com/pja7JrG.jpg', 'mineral', '')">Editar</button>
         </div>
         <!-- Foto 3 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/LylB1pz.jpg', 'Flores', 'El Homo floresiensis, conocido como el Hobbit, es una especie extinta que vivió en la isla de Flores, Indonesia, hace unos 50,000 años. Medía un metro de altura y tenía un cerebro pequeño, pero fabricaba herramientas y cazaba elefantes pequeños. Su extinción sigue siendo un misterio.')">
             <img src="https://i.imgur.com/LylB1pz.jpg" alt="Arte abstracto">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/LylB1pz.jpg', 'Flores', 'El Homo floresiensis, conocido como el Hobbit, es una especie extinta que vivió en la isla de Flores, Indonesia, hace unos 50,000 años. Medía un metro de altura y tenía un cerebro pequeño, pero fabricaba herramientas y cazaba elefantes pequeños. Su extinción sigue siendo un misterio.')">Editar</button>
         </div>
         <!-- Foto 4 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/vBFHeGx.jpg', '(aquí va el título)', '(aquí va la descripción)')">
             <img src="https://i.imgur.com/vBFHeGx.jpg" alt="Exhibición interactiva">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/vBFHeGx.jpg', '(aquí va el título)', '(aquí va la descripción)')">Editar</button>
         </div>
         <!-- Foto 5 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/gBbY4Pa.jpg', 'El Pingüino Emperador', 'El Museo Nacional exhibe un pingüino emperador para concientizar sobre la biodiversidad y los efectos del cambio climático. Este ejemplar, de 115 cm y entre 30 y 40 kg, fue encontrado cubierto de hielo en la Antártida durante una expedición científica y luego trasladado a Buenos Aires para su preservación mediante taxidermia. La muestra destaca cómo la reducción del hielo amenaza su supervivencia y busca educar al público sobre la importancia de la conservación y la investigación científica, convirtiéndolo en un símbolo de la lucha contra el cambio climático.')">
             <img src="https://i.imgur.com/gBbY4Pa.jpg" alt="Arte contemporáneo">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/gBbY4Pa.jpg', 'El Pingüino Emperador', 'El Museo Nacional exhibe un pingüino emperador para concientizar sobre la biodiversidad y los efectos del cambio climático. Este ejemplar, de 115 cm y entre 30 y 40 kg, fue encontrado cubierto de hielo en la Antártida durante una expedición científica y luego trasladado a Buenos Aires para su preservación mediante taxidermia. La muestra destaca cómo la reducción del hielo amenaza su supervivencia y busca educar al público sobre la importancia de la conservación y la investigación científica, convirtiéndolo en un símbolo de la lucha contra el cambio climático.')">Editar</button>
         </div>
         <!-- Foto 6 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">
-            <img src="https://i.imgur.com/u6f3Y8.jpg" alt="Detalles arquitectónicos">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">Editar</button>
+        <div class="photo-card" onclick="showDescription('https://imgur.com/jUyUdua.jpg', 'Tamaury', 'Tamaury, un manatí rescatado en 1995 en el muelle de Barahona, vivió 12 años en el Acuario Nacional. Inicialmente pesaba 31.75 kg y medía 70 cm. Murió el 7 de abril de 2007, pesando 210 kg y midiendo 2.56 m. Su nombre honra a los investigadores Tammy Domínguez y Amaury Villalba, quienes fallecieron en un accidente aéreo mientras estudiaban manatíes en la bahía de Neyba. Esta exhibición de su esqueleto preserva su historia y reafirma nuestro compromiso con la conservación marina.')">
+            <img src="https://imgur.com/jUyUdua.jpg" alt="Detalles arquitectónicos">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://imgur.com/jUyUdua.jpg', 'Tamaury', 'Tamaury, un manatí rescatado en 1995 en el muelle de Barahona, vivió 12 años en el Acuario Nacional. Inicialmente pesaba 31.75 kg y medía 70 cm. Murió el 7 de abril de 2007, pesando 210 kg y midiendo 2.56 m. Su nombre honra a los investigadores Tammy Domínguez y Amaury Villalba, quienes fallecieron en un accidente aéreo mientras estudiaban manatíes en la bahía de Neyba. Esta exhibición de su esqueleto preserva su historia y reafirma nuestro compromiso con la conservación marina.')">Editar</button>
         </div>
-     <!-- Foto 1 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">
-    <img src="https://i.imgur.com/S3kKoJ5.jpg" alt="Arte clásico en el museo">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">Editar</button>
-</div>
-
-<!-- Foto 2 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">
-    <img src="https://i.imgur.com/agFhLkp.jpg" alt="Escultura moderna">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">Editar</button>
-</div>
-
-<!-- Foto 3 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">
-    <img src="https://i.imgur.com/LylB1pz.jpg" alt="Arte abstracto">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">Editar</button>
-</div>
-
-<!-- Foto 4 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">
-    <img src="https://i.imgur.com/vBFHeGx.jpg" alt="Exhibición interactiva">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">Editar</button>
-</div>
-
-<!-- Foto 5 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">
-    <img src="https://i.imgur.com/gBbY4Pa.jpg" alt="Arte contemporáneo">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">Editar</button>
-</div>
-
-<!-- Foto 6 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">
-    <img src="https://i.imgur.com/u6f3Y8.jpg" alt="Detalles arquitectónicos">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">Editar</button>
-</div>
-
-<!-- Foto 7 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">
-    <img src="https://i.imgur.com/g1MBN22.jpg" alt="Arte escultórico">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">Editar</button>
-</div>
-
-<!-- Foto 8 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">
-    <img src="https://i.imgur.com/DB3eJF2.jpg" alt="Paisaje Natural">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">Editar</button>
-</div>
-
-<!-- Foto 9 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/INddYHh.jpg', 'Estudiantes en el Museo', 'Un grupo de estudiantes explorando y aprendiendo dentro del museo, rodeados de historia y conocimiento.')">
-    <img src="https://i.imgur.com/INddYHh.jpg" alt="Estudiantes en el Museo">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/INddYHh.jpg', 'Estudiantes en el Museo', 'Un grupo de estudiantes explorando y aprendiendo dentro del museo, rodeados de historia y conocimiento.')">Editar</button>
-</div>
-
-<!-- Foto 10 -->
-<div class="photo-card" onclick="showDescription('https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">
-    <img src="https://i.imgur.com/DB3eJF2.jpg" alt="Paisaje Natural">
-    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">Editar</button>
-</div>
         <!-- Foto 7 -->
-        <div class="photo-card" onclick="showDescription('https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/g1MBN22.jpg', 'Sala de las Aves', 'Con más de 10,000 especies conocidas, las aves figuran entre los grupos de animales más exitosos. Su destacada diversidad en la Hispaniola, registrando el mayor endemismo de Las Antillas, ha sido justamente considerada en esta sala con la exhibición de 131 pieles, correspondientes a 122 especies.')">
             <img src="https://i.imgur.com/g1MBN22.jpg" alt="Arte escultórico">
-            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">Editar</button>
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/g1MBN22.jpg', 'Sala de las Aves', 'Con más de 10,000 especies conocidas, las aves figuran entre los grupos de animales más exitosos. Su destacada diversidad en la Hispaniola, registrando el mayor endemismo de Las Antillas, ha sido justamente considerada en esta sala con la exhibición de 131 pieles, correspondientes a 122 especies.')">Editar</button>
         </div>
     </section>
 
@@ -324,78 +241,35 @@
         <img id="description-img" src="" alt="Imagen seleccionada">
         <h2 id="description-title"></h2>
         <p id="description-text"></p>
-        <!-- Formulario de edición -->
-        <div class="edit-form">
-            <input type="text" id="edit-title" placeholder="Nuevo título">
-            <textarea id="edit-description" placeholder="Nueva descripción"></textarea>
-            <input type="text" id="edit-image-url" placeholder="Nueva URL de la imagen">
-            <button onclick="saveChanges()">Guardar Cambios</button>
-        </div>
     </div>
 
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; 2025 Exposición del Museo. Todos los derechos reservados.</p>
-    </footer>
-
+    <!-- JavaScript -->
     <script>
-        let currentPhotoCard = null;
+        // Función para mostrar la descripción de la foto
+        function showDescription(imgSrc, title, description) {
+            const descriptionPanel = document.getElementById('description-panel');
+            const descriptionImg = document.getElementById('description-img');
+            const descriptionTitle = document.getElementById('description-title');
+            const descriptionText = document.getElementById('description-text');
 
-        // Función para mostrar la descripción
-        function showDescription(src, title, text) {
-            const gallery = document.querySelector('.gallery');
-            const panel = document.getElementById('description-panel');
-            const img = document.getElementById('description-img');
-            const titleElement = document.getElementById('description-title');
-            const textElement = document.getElementById('description-text');
+            descriptionImg.src = imgSrc;
+            descriptionTitle.textContent = title;
+            descriptionText.textContent = description;
 
-            // Ocultar la galería
-            gallery.style.display = 'none';
-
-            // Mostrar la descripción
-            img.src = src;
-            titleElement.textContent = title;
-            textElement.textContent = text;
-            panel.style.left = '0';
+            descriptionPanel.style.left = '0';
         }
 
-        // Función para ocultar la descripción
+        // Función para ocultar la descripción de la foto
         function hideDescription() {
-            const gallery = document.querySelector('.gallery');
-            const panel = document.getElementById('description-panel');
-
-            // Mostrar la galería
-            gallery.style.display = 'grid';
-
-            // Ocultar la descripción
-            panel.style.left = '-100%';
+            const descriptionPanel = document.getElementById('description-panel');
+            descriptionPanel.style.left = '-100%';
         }
 
-        // Función para editar la foto
-        function editPhoto(event, src, title, description) {
-            event.stopPropagation(); // Evitar que se active el clic en la tarjeta
-            currentPhotoCard = event.target.closest('.photo-card');
-            const editForm = document.querySelector('.edit-form');
-            editForm.style.display = 'flex';
-            document.getElementById('edit-title').value = title;
-            document.getElementById('edit-description').value = description;
-            document.getElementById('edit-image-url').value = src;
-        }
-
-        // Función para guardar los cambios
-        function saveChanges() {
-            const newTitle = document.getElementById('edit-title').value;
-            const newDescription = document.getElementById('edit-description').value;
-            const newImageUrl = document.getElementById('edit-image-url').value;
-
-            if (currentPhotoCard) {
-                currentPhotoCard.querySelector('img').src = newImageUrl;
-                currentPhotoCard.setAttribute('onclick', `showDescription('${newImageUrl}', '${newTitle}', '${newDescription}')`);
-                currentPhotoCard.querySelector('.edit-btn').setAttribute('onclick', `editPhoto(event, '${newImageUrl}', '${newTitle}', '${newDescription}')`);
-            }
-
-            // Ocultar el formulario de edición
-            document.querySelector('.edit-form').style.display = 'none';
+        // Función para editar la foto (puedes personalizar esta función según tus necesidades)
+        function editPhoto(event, imgSrc, title, description) {
+            event.stopPropagation(); // Evita que se active el evento de mostrar la descripción
+            alert(`Editar foto:\nURL: ${imgSrc}\nTítulo: ${title}\nDescripción: ${description}`);
+            // Aquí puedes agregar la lógica para abrir un formulario de edición, etc.
         }
     </script>
 </body>
