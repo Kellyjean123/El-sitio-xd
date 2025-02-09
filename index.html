@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición del Museo - Editable</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
+            color: #f39c12;
+        }
+
+        header p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 10px auto;
+            color: #ecf0f1;
+        }
+
+        /* Galería de fotos */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Descripción flotante */
+        #description-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: left 0.5s ease;
+            z-index: 1000;
+        }
+
+        #description-panel img {
+            max-width: 90%;
+            max-height: 60%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #description-panel h2 {
+            font-size: 2rem;
+            margin: 0 0 10px;
+            color: #f39c12;
+        }
+
+        #description-panel p {
+            font-size: 1rem;
+            max-width: 90%;
+            text-align: center;
+            color: #ecf0f1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Botón de editar */
+        .edit-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: #45a049;
+        }
+
+        /* Formulario de edición */
+        .edit-form {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .edit-form input, .edit-form textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .edit-form button {
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .edit-form button:hover {
+            background: #45a049;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 10px;
+            }
+
+            #description-panel img {
+                max-height: 50%;
+            }
+
+            #description-panel h2 {
+                font-size: 1.5rem;
+            }
+
+            #description-panel p {
+                font-size: 0.9rem;
+            }
+
+            .close-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <h1>Exposición del Museo</h1>
+        <p>Explora las maravillas del museo a través de esta galería interactiva.</p>
+    </header>
+
+    <!-- Galería de fotos -->
+    <section class="gallery">
+        <!-- Foto 1 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">
+            <img src="https://i.imgur.com/S3kKoJ5.jpg" alt="Arte clásico en el museo">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">Editar</button>
+        </div>
+        <!-- Foto 2 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">
+            <img src="https://i.imgur.com/agFhLkp.jpg" alt="Escultura moderna">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">Editar</button>
+        </div>
+        <!-- Foto 3 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">
+            <img src="https://i.imgur.com/LylB1pz.jpg" alt="Arte abstracto">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">Editar</button>
+        </div>
+        <!-- Foto 4 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">
+            <img src="https://i.imgur.com/vBFHeGx.jpg" alt="Exhibición interactiva">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">Editar</button>
+        </div>
+        <!-- Foto 5 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">
+            <img src="https://i.imgur.com/gBbY4Pa.jpg" alt="Arte contemporáneo">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">Editar</button>
+        </div>
+        <!-- Foto 6 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">
+            <img src="https://i.imgur.com/u6f3Y8.jpg" alt="Detalles arquitectónicos">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">Editar</button>
+        </div>
+     <!-- Foto 1 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">
+    <img src="https://i.imgur.com/S3kKoJ5.jpg" alt="Arte clásico en el museo">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/S3kKoJ5.jpg', 'Arte Clásico', 'Esta pintura representa la elegancia y la técnica de los maestros antiguos. Observa los detalles en cada pincelada.')">Editar</button>
+</div>
+
+<!-- Foto 2 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">
+    <img src="https://i.imgur.com/agFhLkp.jpg" alt="Escultura moderna">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/agFhLkp.jpg', 'Escultura Moderna', 'Una obra que desafía las formas tradicionales, invitando a la reflexión sobre el espacio y la materia.')">Editar</button>
+</div>
+
+<!-- Foto 3 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">
+    <img src="https://i.imgur.com/LylB1pz.jpg" alt="Arte abstracto">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/LylB1pz.jpg', 'Arte Abstracto', 'Colores y formas que evocan emociones y pensamientos profundos. ¿Qué ves tú en esta obra?')">Editar</button>
+</div>
+
+<!-- Foto 4 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">
+    <img src="https://i.imgur.com/vBFHeGx.jpg" alt="Exhibición interactiva">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/vBFHeGx.jpg', 'Exhibición Interactiva', 'Una experiencia única donde el arte y la tecnología se fusionan para crear algo mágico.')">Editar</button>
+</div>
+
+<!-- Foto 5 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">
+    <img src="https://i.imgur.com/gBbY4Pa.jpg" alt="Arte contemporáneo">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/gBbY4Pa.jpg', 'Arte Contemporáneo', 'Obras que reflejan la sociedad actual, con mensajes poderosos y técnicas innovadoras.')">Editar</button>
+</div>
+
+<!-- Foto 6 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">
+    <img src="https://i.imgur.com/u6f3Y8.jpg" alt="Detalles arquitectónicos">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/u6f3Y8.jpg', 'Detalles Arquitectónicos', 'La arquitectura del museo es una obra de arte en sí misma. Observa los detalles en cada rincón.')">Editar</button>
+</div>
+
+<!-- Foto 7 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">
+    <img src="https://i.imgur.com/g1MBN22.jpg" alt="Arte escultórico">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">Editar</button>
+</div>
+
+<!-- Foto 8 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">
+    <img src="https://i.imgur.com/DB3eJF2.jpg" alt="Paisaje Natural">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">Editar</button>
+</div>
+
+<!-- Foto 9 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/INddYHh.jpg', 'Estudiantes en el Museo', 'Un grupo de estudiantes explorando y aprendiendo dentro del museo, rodeados de historia y conocimiento.')">
+    <img src="https://i.imgur.com/INddYHh.jpg" alt="Estudiantes en el Museo">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/INddYHh.jpg', 'Estudiantes en el Museo', 'Un grupo de estudiantes explorando y aprendiendo dentro del museo, rodeados de historia y conocimiento.')">Editar</button>
+</div>
+
+<!-- Foto 10 -->
+<div class="photo-card" onclick="showDescription('https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">
+    <img src="https://i.imgur.com/DB3eJF2.jpg" alt="Paisaje Natural">
+    <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/DB3eJF2.jpg', 'Paisaje Natural', 'Un hermoso paisaje natural que captura la esencia de la naturaleza en su máximo esplendor.')">Editar</button>
+</div>
+        <!-- Foto 7 -->
+        <div class="photo-card" onclick="showDescription('https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">
+            <img src="https://i.imgur.com/g1MBN22.jpg" alt="Arte escultórico">
+            <button class="edit-btn" onclick="editPhoto(event, 'https://i.imgur.com/g1MBN22.jpg', 'Arte Escultórico', 'Una pieza que combina tradición y modernidad, creando un diálogo entre el pasado y el presente.')">Editar</button>
+        </div>
+    </section>
+
+    <!-- Descripción flotante -->
+    <div id="description-panel">
+        <span class="close-btn" onclick="hideDescription()">❌</span>
+        <img id="description-img" src="" alt="Imagen seleccionada">
+        <h2 id="description-title"></h2>
+        <p id="description-text"></p>
+        <!-- Formulario de edición -->
+        <div class="edit-form">
+            <input type="text" id="edit-title" placeholder="Nuevo título">
+            <textarea id="edit-description" placeholder="Nueva descripción"></textarea>
+            <input type="text" id="edit-image-url" placeholder="Nueva URL de la imagen">
+            <button onclick="saveChanges()">Guardar Cambios</button>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Exposición del Museo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let currentPhotoCard = null;
+
+        // Función para mostrar la descripción
+        function showDescription(src, title, text) {
+            const gallery = document.querySelector('.gallery');
+            const panel = document.getElementById('description-panel');
+            const img = document.getElementById('description-img');
+            const titleElement = document.getElementById('description-title');
+            const textElement = document.getElementById('description-text');
+
+            // Ocultar la galería
+            gallery.style.display = 'none';
+
+            // Mostrar la descripción
+            img.src = src;
+            titleElement.textContent = title;
+            textElement.textContent = text;
+            panel.style.left = '0';
+        }
+
+        // Función para ocultar la descripción
+        function hideDescription() {
+            const gallery = document.querySelector('.gallery');
+            const panel = document.getElementById('description-panel');
+
+            // Mostrar la galería
+            gallery.style.display = 'grid';
+
+            // Ocultar la descripción
+            panel.style.left = '-100%';
+        }
+
+        // Función para editar la foto
+        function editPhoto(event, src, title, description) {
+            event.stopPropagation(); // Evitar que se active el clic en la tarjeta
+            currentPhotoCard = event.target.closest('.photo-card');
+            const editForm = document.querySelector('.edit-form');
+            editForm.style.display = 'flex';
+            document.getElementById('edit-title').value = title;
+            document.getElementById('edit-description').value = description;
+            document.getElementById('edit-image-url').value = src;
+        }
+
+        // Función para guardar los cambios
+        function saveChanges() {
+            const newTitle = document.getElementById('edit-title').value;
+            const newDescription = document.getElementById('edit-description').value;
+            const newImageUrl = document.getElementById('edit-image-url').value;
+
+            if (currentPhotoCard) {
+                currentPhotoCard.querySelector('img').src = newImageUrl;
+                currentPhotoCard.setAttribute('onclick', `showDescription('${newImageUrl}', '${newTitle}', '${newDescription}')`);
+                currentPhotoCard.querySelector('.edit-btn').setAttribute('onclick', `editPhoto(event, '${newImageUrl}', '${newTitle}', '${newDescription}')`);
+            }
+
+            // Ocultar el formulario de edición
+            document.querySelector('.edit-form').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
